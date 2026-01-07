@@ -1,0 +1,61 @@
+.App { 
+  text-align: center; 
+} 
+
+body {
+  background: linear-gradient(to bottom, #e8ed63, #ec7daa);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+h1{ background-color: rgb(30, 175, 98); 
+  color: rgb(16, 11, 160); 
+} 
+
+h2{ 
+  color: rgb(156, 7, 26) 
+} 
+
+form{ 
+  display: inline-block; 
+  background-color: rgb(131, 86, 221); 
+} 
+
+form label{ 
+  display: inline-block; 
+  width: 150px; 
+} 
+
+form div{ 
+  margin: 10px; 
+  font-weight: bold; 
+  color: rgb(208, 222, 199); 
+} 
+
+button{ 
+  background-color: rgb(255, 247, 0); 
+  color: rgb(11, 4, 61); 
+  font-weight: bold; 
+  padding: 5px; 
+  border-radius: 5px; 
+  border: none; 
+} 
+
+.buttonClass{ 
+  display: inline-block; 
+} 
+
+.profPic{ 
+  width: 120px; 
+  height: 120px; 
+  border: 2px solid rgb(17, 77, 3); 
+}
+
+nav{
+  display: flex;
+  justify-content: space-evenly;
+  background-color: rgb(231, 65, 145);
+  font-weight: bold;
+  padding: 10px;
+  font-size: 20px;
+}
