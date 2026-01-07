@@ -21,7 +21,7 @@ app.use('/profilePics', express.static('profilePics'))
 // });
 app.use(express.static(path.join(__dirname, "3tierdeploy", "build")));
 
-app.get("*", (req, res) => {
+app.get((req, res) => {
   res.sendFile(
     path.join(__dirname, "3tierdeploy", "build", "index.html")
   );
