@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 
 function EditProfile() {
  
-     let firstNameInputRef = useRef();
+     let firstNameInputRef = useRef();l
      let lastNameInputRef = useRef();
      let emailInputRef = useRef();
      let passwordInputRef = useRef();
@@ -27,7 +27,7 @@ function EditProfile() {
   emailInputRef.current.value = userDetails.email;
   ageInputRef.current.value = userDetails.age;
   phoneNoInputRef.current.value = userDetails.phoneNo;
-  setProfilePic(`http://localhost:3693/${userDetails.profilePic}`);
+  setProfilePic(`/${userDetails.profilePic}`);
 }, [userDetails]);
 
  
@@ -54,7 +54,7 @@ function EditProfile() {
              // headers:myHeaders
          }
  
-         let JSONData = await fetch("http://localhost:3693/updateProfile",reqOptions);
+         let JSONData = await fetch("/updateProfile",reqOptions);
          let JSOData = await JSONData.json();
          console.log(JSOData);
          alert(JSOData.msg)

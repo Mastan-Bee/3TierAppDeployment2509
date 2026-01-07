@@ -11,37 +11,37 @@ function Login() {
 
       useEffect(()=>{
         if(localStorage.getItem("token")){
-        // onValidateToken();
+        onValidateToken();
         }
         
       },[])
      
-      // let onValidateToken = async()=>{
-      //     let dataToSend = new FormData();
+      let onValidateToken = async()=>{
+          let dataToSend = new FormData();
           
-      //     dataToSend.append("token",localStorage.getItem("token"));
+          dataToSend.append("token",localStorage.getItem("token"));
           
   
   
-      //     let reqOptions = {
-      //         method:"POST",
-      //         body:dataToSend,
-      //         // headers:myHeaders
-      //     }
+          let reqOptions = {
+              method:"POST",
+              body:dataToSend,
+              // headers:myHeaders
+          }
   
-      //     let JSONData = await fetch("http://localhost:3693/validateToken",reqOptions);
-      //     let JSOData = await JSONData.json();
-      //     console.log(JSOData);
-      //     alert(JSOData.msg)
+          let JSONData = await fetch("/validateToken",reqOptions);
+          let JSOData = await JSONData.json();
+          console.log(JSOData);
+          alert(JSOData.msg)
 
-      //     if(JSOData.status === "Success"){
-      //       // localStorage.setItem("token",JSOData.data.token);
-      //       // localStorage.setItem("password",passwordInputRef.current.value);
-      //       dispatch({type:"login",data:JSOData.data})
-      //       navigate("/dashboard")
-      //     }
+          if(JSOData.status === "Success"){
+            // localStorage.setItem("token",JSOData.data.token);
+            // localStorage.setItem("password",passwordInputRef.current.value);
+            dispatch({type:"login",data:JSOData.data})
+            navigate("/dashboard")
+          }
             
-      // }
+      }
   
        let onLogin = async()=>{
           let dataToSend = new FormData();
@@ -57,7 +57,7 @@ function Login() {
               // headers:myHeaders
           }
   
-          let JSONData = await fetch("http://localhost:3693/login",reqOptions);
+          let JSONData = await fetch("/login",reqOptions);
           let JSOData = await JSONData.json();
           console.log(JSOData);
           alert(JSOData.msg)

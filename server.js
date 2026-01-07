@@ -4,6 +4,8 @@ const cors = require("cors");
 const multer = require("multer");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+const dotenv = require("dotenv");
+dotenv.config();
 
 
 let app = express();
@@ -11,6 +13,10 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded());
 app.use('/profilePics', express.static('profilePics'))
+
+app.use(express.static(path.join(__dirname,"./3tierdeploy/build")));
+
+app.get("*",(req,res)=>{res.sendfile(path.join(__dirname,"./3tierdeploy/build/index.html"))});
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb){
@@ -155,8 +161,8 @@ app.delete("/deleteProfile",upload.none(),async(req,res)=>{
     })
 
 
-app.listen(3693,()=>{
-    console.log("Listening to port 3693")
+app.listen(process.env.PORT,()=>{
+    console.log(`Listening to port ${process.env.PORT}`)
 })
 
 let userDetailSchema = new mongoose.Schema({
@@ -175,7 +181,7 @@ let user = new mongoose.model("users", userDetailSchema,"2509userdetails");
 
 let connectedToMongoDB = async () => {
     try {
-    await mongoose.connect("mongodb+srv://mastanbee1994_db_user:mastanmymongo@masclus1.wq5yqvp.mongodb.net/Batch2509?appName=Masclus1");
+    await mongoose.connect(process.env.MDBURL);
     console.log("Successfully connected to MDB.....!")
    
     }catch(err){

@@ -12,7 +12,7 @@ function Tasks() {
       <h2><ins>Tasks</ins></h2>
       <h3>{userDetails.firstName} {userDetails.lastName}</h3>
       <h3>{userDetails.age}</h3>
-      <img src={`http://localhost:3693/${userDetails.profilePic}`} alt='' className='profPic'></img>
+      <img src={`/${userDetails.profilePic}`} alt='' className='profPic'></img>
 
 
     </div>
