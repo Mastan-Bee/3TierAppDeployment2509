@@ -16,7 +16,8 @@ app.use('/profilePics', express.static('profilePics'))
 
 app.use(express.static(path.join(__dirname,"./3tierdeploy/build")));
 
-app.get("*",(req,res)=>{res.sendfile(path.join(__dirname,"./3tierdeploy/build/index.html"))});
+app.get("/*",(req,res)=>{res.sendFile(path.join(__dirname,"./3tierdeploy/build/index.html"));
+});
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb){
