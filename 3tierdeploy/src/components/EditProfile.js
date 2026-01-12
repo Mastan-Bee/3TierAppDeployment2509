@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 
 function EditProfile() {
  
-     let firstNameInputRef = useRef();l
+     let firstNameInputRef = useRef();
      let lastNameInputRef = useRef();
      let emailInputRef = useRef();
      let passwordInputRef = useRef();
