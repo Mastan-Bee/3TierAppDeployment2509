@@ -681,29 +681,44 @@ app.post("/login", async (req, res) => {
     const { email, password } = req.body;
 
     if (!email || !password) {
-      return res.json({ status: "Failure", msg: "Email and password required" });
+      return res.json({
+        status: "Failure",
+        msg: "Email and password are required"
+      });
     }
 
-    const userArr = await user.find({ email });
-    if (!userArr.length)
-      return res.json({ status: "Failure", msg: "User does not exist" });
+    const userData = await user.findOne({ email });
+    if (!userData) {
+      return res.json({
+        status: "Failure",
+        msg: "User does not exist"
+      });
+    }
 
-    const isValid = await bcrypt.compare(password, userArr[0].password);
-    if (!isValid)
-      return res.json({ status: "Failure", msg: "Invalid Password" });
+    const isValid = await bcrypt.compare(password, userData.password);
+    if (!isValid) {
+      return res.json({
+        status: "Failure",
+        msg: "Invalid Password"
+      });
+    }
 
-    const token = jwt.sign({ email }, process.env.JWT_SECRET, { expiresIn: "2h" });
+    const token = jwt.sign(
+      { email },
+      process.env.JWT_SECRET,
+      { expiresIn: "2h" }
+    );
 
     res.json({
       status: "Success",
-      msg: "Credentials are correct",
+      msg: "Login successful",
       data: {
-        firstName: userArr[0].firstName,
-        lastName: userArr[0].lastName,
-        email: userArr[0].email,
-        age: userArr[0].age,
-        phoneNo: userArr[0].phoneNo,
-        profilePic: userArr[0].profilePic,
+        firstName: userData.firstName,
+        lastName: userData.lastName,
+        email: userData.email,
+        age: userData.age,
+        phoneNo: userData.phoneNo,
+        profilePic: userData.profilePic,
         token
       }
     });
