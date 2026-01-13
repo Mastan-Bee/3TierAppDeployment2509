@@ -620,10 +620,10 @@ app.use(express.urlencoded({ extended: true })); // parse URL-encoded
 if (!fs.existsSync("profilePics")) fs.mkdirSync("profilePics");
 app.use("/profilePics", express.static("profilePics"));
 
-app.use(express.static(path.join(__dirname, "3tierdeploy/build")));
-app.get(/.*/, (req, res) => {
-  res.sendFile(path.join(__dirname, "3tierdeploy/build", "index.html"));
-});
+// app.use(express.static(path.join(__dirname, "3tierdeploy/build")));
+// app.get(/.*/, (req, res) => {
+//   res.sendFile(path.join(__dirname, "3tierdeploy/build", "index.html"));
+// });
 
 /* ================= MULTER ================= */
 const storage = multer.diskStorage({
@@ -778,6 +778,11 @@ app.delete("/deleteProfile", async (req, res) => {
     console.error(err);
     res.json({ status: "Failure", msg: "Server error" });
   }
+});
+
+app.use(express.static(path.join(__dirname, "3tierdeploy/build")));
+app.get(/.*/, (req, res) => {
+  res.sendFile(path.join(__dirname, "3tierdeploy/build", "index.html"));
 });
 
 /* ================= SERVER START ================= */
