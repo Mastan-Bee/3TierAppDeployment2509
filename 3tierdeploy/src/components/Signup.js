@@ -209,7 +209,7 @@ function Signup() {
         </div>
         <div>
           <label>Password</label>
-          <input type="password" ref={passwordRef} />
+          <input ref={passwordRef} />
         </div>
         <div>
           <label>Age</label>
@@ -229,6 +229,7 @@ function Signup() {
           </button>
         </div>
       </form>
+      
     </div>
   );
 }
