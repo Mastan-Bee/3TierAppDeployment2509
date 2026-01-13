@@ -184,7 +184,7 @@ function Signup() {
       const response = await res.json();
       console.log(response);
       alert(response.msg);
-      if (response.status === "Success") navigate("/login");
+      if (response.status === "Success") navigate("/");
     } catch (err) {
       console.error(err);
       alert("Server error");

@@ -680,12 +680,17 @@ app.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
 
+    if (!email || !password) {
+      return res.json({ status: "Failure", msg: "Email and password required" });
+    }
+
     const userArr = await user.find({ email });
     if (!userArr.length)
       return res.json({ status: "Failure", msg: "User does not exist" });
 
     const isValid = await bcrypt.compare(password, userArr[0].password);
-    if (!isValid) return res.json({ status: "Failure", msg: "Invalid Password" });
+    if (!isValid)
+      return res.json({ status: "Failure", msg: "Invalid Password" });
 
     const token = jwt.sign({ email }, process.env.JWT_SECRET, { expiresIn: "2h" });
 
@@ -703,10 +708,11 @@ app.post("/login", async (req, res) => {
       }
     });
   } catch (err) {
-    console.error(err);
+    console.error("LOGIN ERROR:", err);
     res.json({ status: "Failure", msg: "Server error" });
   }
 });
+
 
 // Signup
 app.post("/signup", upload.single("profilePic"), async (req, res) => {
